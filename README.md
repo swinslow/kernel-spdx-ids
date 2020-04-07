@@ -41,7 +41,7 @@ For related information, see:
       download correctly, but the unpacker will fail because it crashes on
       files in the same directory that have the same case-insensitive filename.
 * `-p <path>`, e.g. `-p /path/to/kernel/`: required. path to the kernel source
-  directory to be scanned. if `-d` is present (see below), this is also where
+  directory to be scanned. if `-d` is present, this is also where
   the kernel tarball will be unpacked after downloading.
 * `-s <spdx-path>`, e.g. `-s linux-4.18.spdx`: optional. destination path to
   output SPDX file.
