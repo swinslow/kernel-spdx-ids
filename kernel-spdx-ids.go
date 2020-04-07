@@ -11,9 +11,9 @@ import (
 	"path/filepath"
 
 	"github.com/mholt/archiver"
-	"github.com/swinslow/spdx-go/v0/idsearcher"
-	"github.com/swinslow/spdx-go/v0/reporter"
-	"github.com/swinslow/spdx-go/v0/tvsaver"
+	"github.com/spdx/tools-golang/idsearcher"
+	"github.com/spdx/tools-golang/reporter"
+	"github.com/spdx/tools-golang/tvsaver"
 )
 
 func main() {

@@ -9,7 +9,7 @@ kernel-spdx-ids can do the following:
 4. optionally produce a corresponding SPDX document
 
 Steps 2-4 are basically just a wrapper around functionality provided by
-[spdx-go](https://github.com/swinslow/spdx-go/).
+[spdx/tools-golang](https://github.com/spdx/tools-golang/).
 
 Step 1 is a work in progress. For now, you'll likely want to download and unpack
 the kernel yourself. See `Sample usage` below.
