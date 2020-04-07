@@ -155,10 +155,29 @@ func getKernelFilename(ver string) string {
 	return fmt.Sprintf("linux-%s.tar.xz", ver)
 }
 
+func getKernelMajorVersion(ver string) (string, error) {
+	if len(ver) == 0 {
+		return "", fmt.Errorf("no kernel version provided")
+	}
+
+	majorVer := string(ver[0])
+
+	// test whether it's an integer
+	if majorVer < "0" || majorVer > "9" {
+		return "", fmt.Errorf("kernel version must start with integer")
+	}
+
+	return majorVer, nil
+}
+
 func getKernelTarball(ver string, dst string) error {
 	filename := getKernelFilename(ver)
 	dstpath := filepath.Join(dst, filename)
-	kernelURL := fmt.Sprintf("https://cdn.kernel.org/pub/linux/kernel/v4.x/%s", filename)
+	majorVer, err := getKernelMajorVersion(ver)
+	if err != nil {
+		return err
+	}
+	kernelURL := fmt.Sprintf("https://cdn.kernel.org/pub/linux/kernel/v%s.x/%s", majorVer, filename)
 
 	fmt.Printf("Attempting to download kernel version %s\n", ver)
 	fmt.Printf("  from %s...\n", kernelURL)
