@@ -3,16 +3,16 @@ SPDX-License-Identifier: Apache-2.0 OR GPL-2.0-or-later
 # kernel-spdx-ids
 
 kernel-spdx-ids can do the following:
-1. [WORK IN PROGRESS] obtain and unpack a Linux® kernel source tarball
+1. optionally obtain and unpack a Linux® kernel source tarball
 2. scan it for [SPDX® short-form license IDs](https://spdx.org/ids/)
 3. produce a license report
 4. optionally produce a corresponding SPDX document
 
+Step 1 is optional. You can also download and unpack the kernel yourself.
+See `Sample usage` below.
+
 Steps 2-4 are basically just a wrapper around functionality provided by
 [spdx/tools-golang](https://github.com/spdx/tools-golang/).
-
-Step 1 is a work in progress. For now, you'll likely want to download and unpack
-the kernel yourself. See `Sample usage` below.
 
 Please note that this is NOT performing any sort of license scanning, beyond
 looking for SPDX short-form license IDs. Licenses will not be detected for
@@ -35,19 +35,16 @@ For related information, see:
 `go run kernel-spdx-ids.go` with the following parameters:
 
 * `-v <version>`, e.g. `-v 4.18`: required. kernel version to scan.
+* `-d`: optional. if included, will download the kernel tarball of the version
+  specified in the `-v` flag.
+    * NOTE: May not work correctly on macOS systems. The kernel tarball will
+      download correctly, but the unpacker will fail because it crashes on
+      files in the same directory that have the same case-insensitive filename.
 * `-p <path>`, e.g. `-p /path/to/kernel/`: required. path to the kernel source
   directory to be scanned. if `-d` is present (see below), this is also where
   the kernel tarball will be unpacked after downloading.
 * `-s <spdx-path>`, e.g. `-s linux-4.18.spdx`: optional. destination path to
   output SPDX file.
-* `-d`: optional. if included, will download the kernel tarball of the version
-  specified in the `-v` flag.
-    * NOTE: Not currently working, at least on Mac OS X systems. The kernel
-      tarball will download correctly, but the unpacker will fail because it
-      crashes on files in the same directory that have the same case-insensitive
-      filename.
-    * I have not yet tested this on a non-Mac system. For now, I recommend
-      omitting the `-d` flag and following the sample usage directions below.
 
 ### >= 4.x kernels only
 
